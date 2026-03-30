@@ -1,0 +1,142 @@
+/* ─── Quantum Link — Global Shell Styles ─── */
+
+:root {
+  --bg-base: #0a0b0f;
+  --bg-surface: #12141a;
+  --bg-elevated: #1a1d26;
+  --bg-hover: #1f2230;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-focus: rgba(99, 102, 241, 0.6);
+
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-glow: rgba(99, 102, 241, 0.25);
+  --accent-alt: #22d3ee;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --sidebar-w: 240px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-sans: "Geist", "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Fira Code", monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── App Shell ─── */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.auth-shell {
+  background: var(--bg-base);
+}
+
+.app-main {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Page Loader ─── */
+.page-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.loader-ring {
+  width: 36px;
+  height: 36px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Focus ring ─── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--accent-glow);
+  color: var(--text-primary);
+}
+
+/* ─── Utility ─── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Mobile nav bottom bar ─── */
+@media (max-width: 768px) {
+  .app-shell {
+    flex-direction: column;
+  }
+  .app-main {
+    flex: 1;
+    padding-bottom: 60px; /* space for mobile nav */
+  }
+}
